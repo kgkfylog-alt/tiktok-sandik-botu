@@ -1,0 +1,23 @@
+name: TikTok Bot Calistirici
+
+on:
+  push:
+    branches: [ main ]
+  workflow_dispatch:
+  schedule:
+    - cron: '*/30 * * * *'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+    - name: Python Kurulumu
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.10'
+    - name: Kutuphaneleri Yukle ve Baslat
+      run: |
+        pip install TikTokLive aiohttp
+        python main.py
+        
